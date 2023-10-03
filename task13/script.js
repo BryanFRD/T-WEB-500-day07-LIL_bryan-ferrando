@@ -29,6 +29,6 @@ buttonSearch.addEventListener('click', (event) => {
 buttonReset.addEventListener('click', (event) => {
   event.preventDefault();
   for(li of ul.children) {
-    li.style.display = 'block';
+    li.style.display = 'list-item';
   }
 });
