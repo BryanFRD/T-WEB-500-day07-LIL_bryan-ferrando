@@ -20,8 +20,10 @@ buttonSearch.addEventListener('click', (event) => {
   event.preventDefault();
   const data = new FormData(form2);
   for(li of ul.children) {
-    if(li.dataset.data !== data.get('selector')) {
+    if(data.get('selector') !== 'all' && li.dataset.data !== data.get('selector')) {
       li.style.display = 'none';
+    } else {
+      li.style.display = 'list-item';
     }
   }
 });
