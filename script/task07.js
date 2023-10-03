@@ -24,7 +24,7 @@ link.addEventListener('click', () => {
   event.preventDefault();
   
   const date = new Date();
-  date.setTime(date.getTime() + (24 * 60 * 60 * 1000));
+  date.setDate(date.getDate() + 1);
   document.cookie = `acceptCookies=true;expires=${date.toUTCString()};path=/`;
   
   if(document.cookie.includes('acceptCookies=true')) {
