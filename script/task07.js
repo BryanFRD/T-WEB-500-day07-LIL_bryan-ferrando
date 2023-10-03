@@ -1,5 +1,6 @@
 const footer = document.querySelector('footer');
-const link = footer.querySelector('div > a');
+const divLink = footer.querySelector('div:first-of-type');
+const link = footer.querySelector('a');
 
 const button = document.createElement('div');
 button.innerText = 'Delete the cookie';
@@ -11,10 +12,12 @@ button.addEventListener('click', () => {
   });
   
   footer.removeChild(button);
+  footer.appendChild(divLink);
 });
 
 if(document.cookie.includes('acceptCookies=true')) {
   footer.appendChild(button);
+  footer.removeChild(divLink);
 }
 
 link.addEventListener('click', () => {
@@ -26,5 +29,6 @@ link.addEventListener('click', () => {
   
   if(document.cookie.includes('acceptCookies=true')) {
     footer.appendChild(button);
+    footer.removeChild(divLink)
   }
 });
