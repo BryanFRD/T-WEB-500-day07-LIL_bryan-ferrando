@@ -8,9 +8,11 @@ const limitCoords = (x, y) => {
   let divRect = div.getBoundingClientRect();
   let { left, right, top, bottom } = divRect;
   
+  // add for x and y the half of div size
+  
   return {
     x: parseInt((x < left ? left : x > right ? right : x) - (left/2 + right/2)),
-    y: parseInt((y < top ? top : y - divRect.height > bottom ? bottom : y) - (top/2 + bottom/2))
+    y: parseInt((y < top ? top : y > bottom ? bottom : y) - (top/2 + bottom/2))
   };
 }
 
@@ -18,7 +20,7 @@ canvas.addEventListener("mousedown", () => isDragging = true);
 document.addEventListener("mouseup", () => isDragging = false);
 document.addEventListener("mousemove", (event) => {
   if(!isDragging)
-    return
+    return;
   
   const canvasRect = canvas.getBoundingClientRect();
   
