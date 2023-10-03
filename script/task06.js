@@ -4,17 +4,18 @@ const canvas = footer.querySelector("canvas");
 const coords = footer.querySelector("div:last-of-type");
 let isDragging = false;
 
+coords.innerText = `New coordinates => {x: 0, y: 0}`;
+
 const limitCoords = (x, y) => {
-  let divRect = div.getBoundingClientRect();
-  let { left, right, top, bottom } = divRect;
-  
-  // add for x and y the half of div size
+  const divRect = div.getBoundingClientRect();
+  const canvasRect = canvas.getBoundingClientRect();
+  const { left, right, top, bottom } = divRect;
   
   return {
-    x: parseInt((x < left ? left : x > right ? right : x) - (left/2 + right/2)),
-    y: parseInt((y < top ? top : y > bottom ? bottom : y) - (top/2 + bottom/2))
+    x: (x < left + canvasRect.width ? left + canvasRect.width/2 : x > right - canvasRect.width ? right - canvasRect.width/2 : x) - (left/2 + right/2),
+    y: (y < top + canvasRect.height/2 + 2 ? top  + canvasRect.height/2 + 2 : y > bottom - canvasRect.height/2 + 3 ? bottom - canvasRect.height/2 + 3 : y) - (top/2 + bottom/2)
   };
-}
+};
 
 canvas.addEventListener("mousedown", () => isDragging = true);
 document.addEventListener("mouseup", () => isDragging = false);
@@ -36,6 +37,6 @@ document.addEventListener("mousemove", (event) => {
     return;
   
   let { x, y } = limitCoords(event.clientX, event.clientY);
-    
-  coords.innerText = `New coordinates => {x: ${x}, y: ${y}}`;
+  
+  coords.innerText = `New coordinates => {x: ${parseInt(x)}, y: ${parseInt(y)}}`;
 });
