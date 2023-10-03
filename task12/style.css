@@ -1,11 +1,11 @@
 .note {
-  color: blue;
+  border: solid 1px blue;
 }
 
 .email {
-  color: green;
+  border: solid 1px green;
 }
 
 .todo {
-  color: red;
+  border: solid 1px red;
 }
