@@ -22,6 +22,8 @@ buttonSearch.addEventListener('click', (event) => {
   for(li of ul.children) {
     if(li.dataset.data !== data.get('selector') || !li.textContent.toLowerCase().includes(data.get('search').toLowerCase())) {
       li.style.display = 'none';
+    } else {
+      li.style.display = 'list-item';
     }
   }
 });
