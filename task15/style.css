@@ -134,6 +134,7 @@ ul li {
   border-top: none;
   position: absolute;
   width: calc(100% - 6px);
+  background-color: #eee;
 }
 
 .dropdown-check-list ul.items li {

@@ -46,6 +46,9 @@ form.addEventListener('submit', (event) => {
     input.style.display = 'none';
     addTagButton2.style.display = 'none';
     
+    if(input.value === '')
+      return;
+    
     const tagDiv = document.createElement('div');
     tagDiv.classList.add('tag');
     const tagSpan = document.createElement('span');
