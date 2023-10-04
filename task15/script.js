@@ -34,6 +34,42 @@ form.addEventListener('submit', (event) => {
     tagsDiv.appendChild(tagDiv);
   }
   
+  const addTagButton = document.createElement('button');
+  addTagButton.innerText = '+';
+  const input = document.createElement('input');
+  input.style.display = 'none';
+  const addTagButton2 = document.createElement('button');
+  addTagButton2.innerText = '+';
+  addTagButton2.style.display = 'none';
+  addTagButton2.addEventListener('click', () => {
+    addTagButton.style.display = 'inline-block';
+    input.style.display = 'none';
+    addTagButton2.style.display = 'none';
+    
+    const tagDiv = document.createElement('div');
+    tagDiv.classList.add('tag');
+    const tagSpan = document.createElement('span');
+    tagSpan.innerText = input.value;
+    const tagButton = document.createElement('button');
+    tagButton.innerText = 'x';
+    tagButton.addEventListener('click', () => {
+      tagSpan.remove();
+      tempTags = tempTags.filter((tag) => tag !== input.value);
+    });
+    tagDiv.appendChild(tagSpan);
+    tagDiv.appendChild(tagButton);
+    tagsDiv.appendChild(tagDiv);
+    li.dataset.tags = li.dataset.tags + ',' + input.value;
+    refreshDiffTags();
+  });
+  addTagButton.addEventListener('click', () => {
+    addTagButton.style.display = 'none';
+    input.style.display = 'inline-block';
+    addTagButton2.style.display = 'inline-block';
+  });
+  liContainer.appendChild(input);
+  liContainer.appendChild(addTagButton2);
+  liContainer.appendChild(addTagButton);
   li.dataset.tags = tempTags;
   liContainer.appendChild(tagsDiv);
   li.appendChild(liContainer);
@@ -140,6 +176,7 @@ const refreshDiffTags = () => {
     diffTags.push(...tag.dataset.tags.split(',').filter((t) => !diffTags.includes(t)));
   }
   for(let tag of diffTags){
+    if(tag === '') continue;
     const li = document.createElement('li');
     li.innerText = tag;
     li.dataset.tags = tag;
