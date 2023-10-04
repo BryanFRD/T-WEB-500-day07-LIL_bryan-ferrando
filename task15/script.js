@@ -96,8 +96,6 @@ buttonSearch.addEventListener('click', (event) => {
     }
   }
   
-  console.log(whitelistTags, blacklistTags);
-  
   const data = new FormData(form2);
   for(li of elementList.children) {
     if((whitelistOptions.length > 0 && !whitelistOptions.includes(li.dataset.data)) || (blacklistOptions.length > 0 && blacklistOptions.includes(li.dataset.data)) || (whitelistTags.length > 0 && !whitelistTags.includes(li.dataset.tags)) || (blacklistTags.length > 0 && blacklistTags.includes(li.dataset.tags)) || !li.querySelector('span').innerText.includes(data.get('search'))) {
