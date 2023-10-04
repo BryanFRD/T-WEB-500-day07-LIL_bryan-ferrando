@@ -26,7 +26,7 @@ form.addEventListener('submit', (event) => {
     const tagButton = document.createElement('button');
     tagButton.innerText = 'x';
     tagButton.addEventListener('click', () => {
-      tagSpan.remove();
+      tagDiv.remove();
       tempTags = tempTags.filter((tag) => tag !== tagSpan.innerText);
     });
     tagDiv.appendChild(tagSpan);
@@ -53,7 +53,7 @@ form.addEventListener('submit', (event) => {
     const tagButton = document.createElement('button');
     tagButton.innerText = 'x';
     tagButton.addEventListener('click', () => {
-      tagSpan.remove();
+      tagDiv.remove();
       tempTags = tempTags.filter((tag) => tag !== input.value);
     });
     tagDiv.appendChild(tagSpan);
@@ -90,7 +90,7 @@ addTagButton.addEventListener('click', () => {
     const tempTagButton = document.createElement('button');
     tempTagButton.innerText = 'x';
     tempTagButton.addEventListener('click', () => {
-      tempTagSpan.remove();
+      tempTagDiv.remove();
       tempTags = tempTags.filter((tag) => tag !== tempTagSpan.innerText);
       refreshDiffTags();
     });
@@ -115,6 +115,8 @@ buttonSearch.addEventListener('click', (event) => {
   const whitelistTags = [];
   const blacklistTags = [];
   
+  console.log(whitelistTags, blacklistTags);
+  
   for(let li of optionsLi){
     console.log(li.dataset)
     if(li.dataset.wob == 'whitelist'){
@@ -134,7 +136,8 @@ buttonSearch.addEventListener('click', (event) => {
   
   const data = new FormData(form2);
   for(li of elementList.children) {
-    if((whitelistOptions.length > 0 && !whitelistOptions.includes(li.dataset.data)) || (blacklistOptions.length > 0 && blacklistOptions.includes(li.dataset.data)) || (whitelistTags.length > 0 && !whitelistTags.includes(li.dataset.tags)) || (blacklistTags.length > 0 && blacklistTags.includes(li.dataset.tags)) || !li.querySelector('span').innerText.includes(data.get('search'))) {
+    console.log(li.dataset);
+    if((whitelistOptions.length > 0 && !whitelistOptions.includes(li.dataset.data)) || (blacklistOptions.length > 0 && blacklistOptions.includes(li.dataset.data)) || (whitelistTags.length > 0 && !whitelistTags.some(t => li.dataset.tags.split(',').includes(t))) || (blacklistTags.length > 0 && blacklistTags.some(t => li.dataset.tags.split(',').includes(t))) || !li.querySelector('span').innerText.includes(data.get('search'))) {
       li.style.display = 'none';
     } else {
       li.style.display = 'list-item';
