@@ -31,12 +31,5 @@ document.addEventListener("mousemove", (event) => {
   let { x, y } = limitCoords(offsetX, offsetY);
   
   canvas.style.transform = `translate(${x}px, ${y}px)`;
-});
-document.addEventListener("mousemove", (event) => {
-  if(!isDragging)
-    return;
-  
-  let { x, y } = limitCoords(event.clientX, event.clientY);
-  
   coords.innerText = `New coordinates => {x: ${parseInt(x)}, y: ${parseInt(y)}}`;
 });
