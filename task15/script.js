@@ -79,13 +79,12 @@ buttonSearch.addEventListener('click', (event) => {
   const whitelistTags = [];
   const blacklistTags = [];
   
-  console.log(whitelistOptions, whitelistTags, blacklistOptions, blacklistTags);
-  
   for(let li of optionsLi){
+    console.log(li.dataset)
     if(li.dataset.wob == 'whitelist'){
-      whitelistOptions.push(li.dataset.data);
+      whitelistOptions.push(li.dataset.options);
     } else if(li.dataset.wob == 'blacklist'){
-      blacklistOptions.push(li.dataset.data);
+      blacklistOptions.push(li.dataset.options);
     }
   }
   
@@ -97,9 +96,11 @@ buttonSearch.addEventListener('click', (event) => {
     }
   }
   
+  console.log(whitelistTags, blacklistTags);
+  
   const data = new FormData(form2);
   for(li of elementList.children) {
-    if(!li.querySelector('span').innerText.includes(data.get('search')) || (whitelistOptions.length > 0 && !whitelistOptions.includes(li.dataset.data)) || (blacklistOptions.length > 0 && blacklistOptions.includes(li.dataset.data)) || (whitelistTags.length > 0 && !whitelistTags.includes(li.dataset.tags)) || (blacklistTags.length > 0 && blacklistTags.includes(li.dataset.tags))) {
+    if((whitelistOptions.length > 0 && !whitelistOptions.includes(li.dataset.data)) || (blacklistOptions.length > 0 && blacklistOptions.includes(li.dataset.data)) || (whitelistTags.length > 0 && !whitelistTags.includes(li.dataset.tags)) || (blacklistTags.length > 0 && blacklistTags.includes(li.dataset.tags)) || !li.querySelector('span').innerText.includes(data.get('search'))) {
       li.style.display = 'none';
     } else {
       li.style.display = 'list-item';
@@ -141,7 +142,6 @@ const refreshDiffTags = () => {
     diffTags.push(...tag.dataset.tags.split(',').filter((t) => !diffTags.includes(t)));
   }
   for(let tag of diffTags){
-    console.log(diffTags, tag)
     const li = document.createElement('li');
     li.innerText = tag;
     li.dataset.tags = tag;
