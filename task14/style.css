@@ -6,7 +6,47 @@ body {
 }
 
 form {
-  margin-bottom: 20px;
+  margin: 20px;
+}
+
+.li-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.tag {
+  display: flex;
+  justify-content: space-between;
+  width: fit-content;
+  overflow: hidden;
+  gap: 10px;
+  background-color: lightgray;
+}
+
+.tag span {
+  padding: 5px;
+}
+
+.tag button {
+  background-color: tomato;
+  border: none;
+  padding: 5px;
+}
+
+.whitelist {
+  background-color: #007bff;
+}
+
+.blacklist {
+  text-decoration: line-through;
+}
+
+.tags  {
+  margin: 0 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 input[type="text"],
@@ -50,5 +90,63 @@ ul {
 ul li {
   margin-bottom: 0.5rem;
   padding: 1rem;
-  width: min-content;
+  width: fit-content;
+}
+
+.dropdown-check-list {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-check-list .anchor {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  padding: 5px 50px 5px 10px;
+  border: 1px solid #ccc;
+}
+
+.dropdown-check-list .anchor:after {
+  position: absolute;
+  content: "";
+  border-left: 2px solid black;
+  border-top: 2px solid black;
+  padding: 5px;
+  right: 10px;
+  top: 20%;
+  -moz-transform: rotate(-135deg);
+  -ms-transform: rotate(-135deg);
+  -o-transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}
+
+.dropdown-check-list .anchor:active:after {
+  right: 8px;
+  top: 21%;
+}
+
+.dropdown-check-list ul.items {
+  padding: 2px;
+  display: none;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-top: none;
+  position: absolute;
+  width: calc(100% - 6px);
+}
+
+.dropdown-check-list ul.items li {
+  list-style: none;
+  margin: 0;
+  width: calc(100% - 32px);
+  user-select: none;
+}
+
+.dropdown-check-list.visible .anchor {
+  color: #0094ff;
+}
+
+.dropdown-check-list.visible .items {
+  display: block;
 }

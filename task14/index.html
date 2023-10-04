@@ -21,18 +21,20 @@
     <form>
       <label>Name:</label>
       <input type="text" name="search">
-      <select name="selector">
-        <option value="all">All</option>
-        <option value="note">Note</option>
-        <option value="email">Email</option>
-        <option value="todo">Todo</option>
-      </select>
+      <div class="dropdown-check-list" tabindex="100">
+        <span class="anchor">Select options</span>
+        <ul class="items">
+          <li data-options="note">Note</li>
+          <li data-options="email">Email</li>
+          <li data-options="todo">Todo</li>
+        </ul>
+      </div>
       <button type="button">Search</button>
       <button type="button">Reset</button>
     </form>
   </div>
   <div>
-    <ul>
+    <ul id="elementList">
     </ul>
   </div>
   <script src="./script.js"></script>
